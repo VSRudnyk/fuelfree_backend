@@ -1,0 +1,102 @@
+{"level":50,"time":"2023-08-24T20:39:38.797Z","pid":26,"hostname":"ac2fa3e4a993","msg":"URI must include hostname, domain name, and tld"}
+{"level":50,"time":"2023-08-24T20:39:41.211Z","pid":26,"hostname":"ac2fa3e4a993","msg":"URI must include hostname, domain name, and tld"}
+{"level":50,"time":"2023-08-24T20:39:43.761Z","pid":25,"hostname":"ac2fa3e4a993","msg":"URI must include hostname, domain name, and tld"}
+{"level":50,"time":"2023-08-24T20:39:47.176Z","pid":26,"hostname":"ac2fa3e4a993","msg":"URI must include hostname, domain name, and tld"}
+{"level":50,"time":"2023-08-24T20:39:50.198Z","pid":26,"hostname":"ac2fa3e4a993","msg":"URI must include hostname, domain name, and tld"}
+{"level":30,"time":"2023-08-24T20:40:23.170Z","pid":25,"hostname":"962af1914d78","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T21:34:18.116Z","pid":50648,"hostname":"Ivaros.local","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T21:38:30.909Z","pid":51278,"hostname":"Ivaros.local","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T21:52:25.813Z","pid":52423,"hostname":"Ivaros.local","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:13:33.650Z","pid":26,"hostname":"e2d36ea7e8dc","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:16:54.328Z","pid":25,"hostname":"c89571aff05d","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:20:37.419Z","pid":26,"hostname":"48e56cfdfc30","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:24:38.232Z","pid":26,"hostname":"283641667e00","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:32:34.147Z","pid":26,"hostname":"214d635d7385","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:43:52.810Z","pid":26,"hostname":"d58eea4bc0a9","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:47:04.411Z","pid":58839,"hostname":"Ivaros.local","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-24T22:51:28.221Z","pid":26,"hostname":"bb94146f7a3e","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T07:15:07.365Z","pid":26,"hostname":"f2e54ea5df62","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T07:35:53.248Z","pid":25,"hostname":"1bf8afa5ad62","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T07:39:23.046Z","pid":26,"hostname":"c80860972fb4","msg":"MongoDB is connected. API is on port: 4040"}
+{"level":30,"time":"2023-08-25T07:42:06.295Z","pid":26,"hostname":"61f172aee6d9","msg":"MongoDB is connected. API is on port: 4040"}
+{"level":30,"time":"2023-08-25T07:49:14.230Z","pid":26,"hostname":"4661ad25b38d","msg":"MongoDB is connected. API is on port: 4040"}
+{"level":30,"time":"2023-08-25T07:52:35.818Z","pid":26,"hostname":"c442cc3f6bee","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T09:26:45.846Z","pid":37716,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T10:01:11.112Z","pid":42711,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T10:11:18.877Z","pid":42711,"hostname":"vaua0076727.online-vm.com","msg":"new user created"}
+{"level":30,"time":"2023-08-25T10:15:37.593Z","pid":42711,"hostname":"vaua0076727.online-vm.com","msg":"new user created"}
+{"level":50,"time":"2023-08-25T10:18:49.654Z","pid":42711,"hostname":"vaua0076727.online-vm.com","msg":"Email or password invalid"}
+{"level":30,"time":"2023-08-25T10:55:15.170Z","pid":50426,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T11:20:31.462Z","pid":54163,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T12:01:33.611Z","pid":60459,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T12:04:40.413Z","pid":61104,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T12:29:08.452Z","pid":65011,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T12:30:59.976Z","pid":65318,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-25T13:35:04.450Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-08-26T07:00:01.160Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-08-26T07:00:01.161Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-08-27T07:00:01.234Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-08-27T07:00:01.235Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-08-28T07:00:01.587Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-08-28T07:00:01.588Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-08-29T07:00:01.373Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-08-29T07:00:01.375Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-08-30T07:00:01.461Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-08-30T07:00:01.462Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-08-31T07:00:00.633Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-08-31T07:00:00.634Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-01T07:00:01.187Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-01T07:00:01.188Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-02T07:00:01.218Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-02T07:00:01.220Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-03T07:00:01.046Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-03T07:00:01.047Z","pid":74528,"hostname":"vaua0076727.online-vm.com","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-04T06:00:15.519Z","pid":8164,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T06:12:11.194Z","pid":7812,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T06:15:13.060Z","pid":8864,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T06:20:09.593Z","pid":8864,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-04T06:20:09.593Z","pid":8864,"hostname":"DESKTOP-8F8912P","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-04T06:25:18.273Z","pid":3044,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T06:26:38.959Z","pid":2968,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T08:42:43.487Z","pid":8196,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T08:42:52.466Z","pid":5076,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T08:42:57.572Z","pid":1112,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T08:43:01.144Z","pid":1112,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-04T08:43:01.145Z","pid":1112,"hostname":"DESKTOP-8F8912P","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-04T09:09:51.418Z","pid":3036,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:10:01.685Z","pid":8252,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:10:12.914Z","pid":1876,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:11:00.726Z","pid":1876,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-04T09:11:00.726Z","pid":1876,"hostname":"DESKTOP-8F8912P","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":50,"time":"2023-09-04T09:11:01.080Z","pid":1876,"hostname":"DESKTOP-8F8912P","msg":"Unauthorized"}
+{"level":30,"time":"2023-09-04T09:11:01.436Z","pid":1876,"hostname":"DESKTOP-8F8912P","msg":"Message sent to Slack"}
+{"level":30,"time":"2023-09-04T09:14:51.990Z","pid":5012,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:15:00.883Z","pid":6752,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:15:01.417Z","pid":6752,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-04T09:15:01.417Z","pid":6752,"hostname":"DESKTOP-8F8912P","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":50,"time":"2023-09-04T09:15:01.783Z","pid":6752,"hostname":"DESKTOP-8F8912P","msg":"Unauthorized"}
+{"level":30,"time":"2023-09-04T09:16:06.344Z","pid":6216,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:16:10.418Z","pid":10160,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:17:01.307Z","pid":10160,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-04T09:17:01.308Z","pid":10160,"hostname":"DESKTOP-8F8912P","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":50,"time":"2023-09-04T09:17:01.680Z","pid":10160,"hostname":"DESKTOP-8F8912P","msg":"Unauthorized"}
+{"level":30,"time":"2023-09-04T09:17:02.011Z","pid":10160,"hostname":"DESKTOP-8F8912P","msg":"Message sent to Slack"}
+{"level":30,"time":"2023-09-04T09:41:23.750Z","pid":6692,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:41:34.442Z","pid":5204,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:42:26.977Z","pid":2200,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:42:32.336Z","pid":8548,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:42:36.695Z","pid":9812,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:43:01.872Z","pid":9812,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":50,"time":"2023-09-04T09:43:01.872Z","pid":9812,"hostname":"DESKTOP-8F8912P","msg":"Cannot read properties of undefined (reading 'status')"}
+{"level":30,"time":"2023-09-04T09:46:19.545Z","pid":7256,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:46:28.859Z","pid":7380,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:47:00.694Z","pid":7380,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":30,"time":"2023-09-04T09:48:37.183Z","pid":4888,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:48:48.406Z","pid":6428,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:49:01.102Z","pid":6428,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":30,"time":"2023-09-04T09:50:35.660Z","pid":9172,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:50:43.041Z","pid":6956,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T09:51:00.677Z","pid":6956,"hostname":"DESKTOP-8F8912P","msg":"logs send by smtp"}
+{"level":30,"time":"2023-09-04T09:51:35.677Z","pid":3912,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T10:09:41.883Z","pid":9424,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
+{"level":30,"time":"2023-09-04T10:12:12.554Z","pid":8500,"hostname":"DESKTOP-8F8912P","msg":"MongoDB is connected. API is on port: 3000"}
