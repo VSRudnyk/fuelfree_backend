@@ -1,0 +1,1821 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Fuelfree API Docs",
+    "description": "Showing off swagger-ui-express",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes": [
+    "application/json",
+    "multipart/form-data",
+    "image/png",
+    "image/jpg",
+    "image/gif",
+    "image/web"
+  ],
+  "produces": [
+    "application/json",
+    "multipart/form-data",
+    "image/png",
+    "image/jpg",
+    "image/gif",
+    "image/web"
+  ],
+  "servers": [
+    { "url": "http://localhost:3000", "description": "Local" },
+    {
+      "url": "https://fuelfree-backend.vercel.app",
+      "description": "Main"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "User authentication"
+    },
+    {
+      "name": "Cars",
+      "description": "Cars endpoints"
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Create a new user",
+
+        "parameters": [],
+
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
+              }
+            }
+          },
+          "400": { "description": "Bad Request" },
+          "409": { "description": "Email or phone in use" },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+
+    "/api/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Email or password invalid"
+          },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+
+    "/api/auth/refresh": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Refresh user token",
+        "parameters": [],
+        "requestBody": {
+          "description": "Refresh token",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWQ5NTYwY2FmNDU2N2FhMTNlNmRmNyIsImlhdCI6MTY3OTY2MDcxMywiZXhwIjoxNjgwMjY1NTEzfQ.d045FdD9sHXq3JeEX-gS9PTAywIGtA67Cr_33qmylLw"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGE1MmY1MGJiMTVlOTM1NWRiMTMxYSIsImlhdCI6MTY3NTM3MTE2MSwiZXhwIjoxNjc1MzcyMDYxfQ.hesoLS6Xr6LZfjgpo-otp8eZCgCLoLKMWRYpojZ6cKE"
+                    },
+                    "refreshToken": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGE1MmY1MGJiMTVlOTM1NWRiMTMxYSIsImlhdCI6MTY3NTM3MTE2MSwiZXhwIjoxNjc1MzcyMDYxfQ.hesoLS6Xr6LZfjgpo-otp8eZCgCLoLKMWRYpojZ6cKE"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Token invalid"
+          },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+
+    "/api/users/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get information about the current user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/users/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Log out user",
+
+        "parameters": [],
+
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "204": {
+            "description": "Logout success"
+          },
+          "401": {
+            "description": "Missing header with authorization token"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/users/edit": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Update information about the current user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserInfoRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserInfoRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/users/avatars": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update user's avatar",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User's object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrentUserUpdateAvatarRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserUpdateAvatarRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/friends": {
+      "get": {
+        "tags": ["Our Friends"],
+        "summary": "Obtaining contact information about services that provide services",
+        "consumes": "multipart/form-data",
+
+        "parameters": [],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFriendsRequest"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Receiving news",
+
+        "parameters": [],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNewsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/notices": {
+      "post": {
+        "tags": ["Notices"],
+        "summary": "Adding notice according to the selected category",
+        "security": [{ "Bearer": [] }],
+        "parameters": [],
+        "requestBody": {
+          "description": "Notice object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NewNoticeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "successfully created"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Receiving ads of an authorized user created by the same user",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticesListschema"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/notices/category/{category}": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Search notice in category",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "description": "Category Name",
+            "schema": {
+              "type": "string",
+              "example": "sell"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search query",
+            "schema": {
+              "type": "string",
+              "example": "Прод"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page pagination",
+            "type": "integer"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticesListschema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/notices/id/{id}": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get one notice by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Notice id",
+            "schema": {
+              "type": "string",
+              "example": "6418cb61dea99f728afd5b48"
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Notice not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Deleting an ad of an authorized user",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Notice id",
+            "schema": {
+              "type": "string",
+              "example": "6418cb61dea99f728afd5b48"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "integer",
+                      "description": "Notice id",
+                      "example": "6418cb61dea99f728afd5b48"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Notice not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/notices/favorite": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Receiving notices of the authorized user added by him to the favorites",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FavoriteNoticeListSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/notices/favorite/{id}": {
+      "post": {
+        "tags": ["Notices"],
+        "summary": "Adding an authorized user's notice to favorites",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "Notice id",
+            "schema": {
+              "type": "string",
+              "example": "6419adf2fdacd0bab0258b92"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FavoriteNoticeSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Deletion of the ad of the authorized user added to the favorites",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "Notice id",
+            "schema": {
+              "type": "string",
+              "example": "6419adf2fdacd0bab0258b92"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "integer",
+                      "description": "Notice id",
+                      "example": "6418cb61dea99f728afd5b48"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Notice not found"
+          },
+          "409": {
+            "description": "Notice with id: {id} not in favorites"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/pets": {
+      "post": {
+        "tags": ["Pets"],
+        "summary": "Add animal card",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Pets object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PetRequestSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetResponseSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/pets/{petId}": {
+      "delete": {
+        "tags": ["Pets"],
+        "summary": "Removing the animal card",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "petId",
+            "required": true,
+            "type": "string",
+            "description": "Pet's id",
+            "schema": {
+              "type": "string",
+              "example": "6419adf2fdacd0bab0258b92"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetResponseSchema"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Pet with id not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+
+    "/api/cities": {
+      "get": {
+        "tags": ["Cities"],
+        "summary": "Add city name and location in Register form",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "City Name in search query",
+            "schema": {
+              "type": "string",
+              "example": "Бро"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cityName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "SignupRequest": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          }
+        },
+        "example": {
+          "email": "ivan.roschin@gmail.com",
+          "name": "ivan roschin",
+          "password": "1111111"
+        }
+      },
+
+      "SignupResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "User's name"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email"
+            }
+          }
+        },
+        "example": {
+          "name": "User Test",
+          "email": "usertest@gmail.com"
+        }
+      },
+
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "example": "ivan.roschin@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "1111111"
+          }
+        }
+      },
+
+      "LoginResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "accessToken": {
+              "type": "string",
+              "description": "accessToken"
+            },
+            "refreshToken": {
+              "type": "string",
+              "description": "refreshToken"
+            },
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name"
+              },
+
+              "email": {
+                "type": "string",
+                "description": "User's email"
+              }
+            }
+          }
+        },
+        "example": {
+          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWQ5NmZkMjFhOTE4MjNiY2NkYzYzYiIsImlhdCI6MTY3OTY4NjA4NSwiZXhwIjoxNjc5ODU4ODg1fQ.U-cK6jUuCnRJ9xzb2sV8sWDmRRAcqKAOYg6AJjc-ia0",
+          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWQ5NmZkMjFhOTE4MjNiY2NkYzYzYiIsImlhdCI6MTY3OTY4NjA4NSwiZXhwIjoxNjgwMjkwODg1fQ.27gonetSCtebvuz0dgfYvgifZbOtRQlih3ix6wR7O3w",
+          "name": "ivan roschin",
+          "email": "ivan.roschin@gmail.com"
+        }
+      },
+
+      "CurrentUserResponse": {
+        "description": "Current User's information",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city and region"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Users's birthday"
+          },
+          "avatarURL": {
+            "type": "string",
+            "format": "binary"
+          },
+          "myPets": {
+            "description": "New registered User's myPent's array is empty",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Pet's id"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Pet's name"
+                },
+                "breed": {
+                  "type": "string",
+                  "description": "Pet's breed"
+                },
+                "photoURL": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "Pet's photo"
+                },
+                "birthDate": {
+                  "type": "string",
+                  "format": "dateTime",
+                  "description": "Pet's birthday"
+                },
+                "comments": {
+                  "type": "string",
+                  "description": "Some text about Pet"
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "User's id"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User's email"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "User's name"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "favorite": {
+            "description": "New registered User's favorite array is empty",
+            "type": "array",
+            "items": {
+              "_id": {
+                "type": "string",
+                "description": "Notice's id"
+              }
+            }
+          }
+        },
+        "example": {
+          "_id": "641c3b90861b0e0fbf7c0150",
+          "name": "User Test",
+          "email": "usertest@gmail.com",
+          "city": "Brovary, Kyiv",
+          "phone": "+380951983729",
+          "birthDate": "2023-03-21T13:15:30.063Z",
+          "avatarURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+          "myPets": [
+            {
+              "_id": "64205665b46681f3e41316b2",
+              "name": "Tom",
+              "breed": "British",
+              "photoURL": "http://res.cloudinary.com/dpjmbj5vx/image/upload/v1679403024/petsImages/licensed-image.jpg",
+              "birthDate": "2023-03-21T13:15:30.063Z",
+              "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+              "owner": {
+                "_id": "641c3b90861b0e0fbf7c0150",
+                "email": "usertest@gmail.com",
+                "name": "User Test"
+              }
+            }
+          ],
+          "favorites": ["6418cb61dea99f728afd5b48", "6418cb72dea99f728afd5b50"]
+        }
+      },
+
+      "UpdateUserInfoRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "New user's email",
+            "example": "newusertest@gmail.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "New user's name",
+            "example": "newusertest@gmail.com"
+          },
+          "city": {
+            "type": "string",
+            "description": "New user's city and region",
+            "example": "New User's City"
+          },
+          "phone": {
+            "type": "string",
+            "description": "New user's phone",
+            "example": "+30981111111"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "User's new date birthday",
+            "example": "2023-03-20T21:08:49.033+00:00"
+          }
+        }
+      },
+
+      "CurrentUserUpdateAvatarRequest": {
+        "type": "object",
+        "required": ["avatarURL"],
+        "properties": {
+          "avatarURL": {
+            "type": "string",
+            "description": "New Avatar image",
+            "format": "binary"
+          }
+        },
+        "example": {
+          "avatarURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg"
+        }
+      },
+
+      "GetFriendsRequest": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "addressUrl": {
+              "type": "string"
+            },
+            "imageUrl": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "workDays": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "phone": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "641619c3f5d2e4b7ee02e9ac",
+            "title": "Притулок для бездомних тварин 'Сіріус'",
+            "url": "https://dogcat.com.ua",
+            "addressUrl": "https://goo.gl/maps/iq8NXEUf31EAQCzc6",
+            "imageUrl": "https://storage.googleapis.com/kidslikev2_bucket/pets-support/images/sponsors/frame_287.png",
+            "address": "Fedorivka, Kyiv Oblast, Ukraine, 07372",
+            "workDays": [
+              {
+                "_id": "64219b0b528e446bc31a99ca",
+                "isOpen": false
+              },
+              {
+                "_id": "64219b0b528e446bc31a99cb",
+                "isOpen": false
+              },
+              {
+                "_id": "64219b0b528e446bc31a99cc",
+                "isOpen": false
+              },
+              {
+                "_id": "64219b0b528e446bc31a99cd",
+                "isOpen": false
+              },
+              {
+                "_id": "64219b0b528e446bc31a99ce",
+                "isOpen": false
+              },
+              {
+                "_id": "64219b0b528e446bc31a99cf",
+                "isOpen": true,
+                "from": "11:00",
+                "to": "16:00"
+              },
+              {
+                "_id": "64219b0b528e446bc31a99d0",
+                "isOpen": true,
+                "from": "11:00",
+                "to": "16:00"
+              }
+            ],
+            "phone": "+380931934069",
+            "email": null
+          }
+        ]
+      },
+
+      "GetNewsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "641619a3f5d2e4b7ee02e997",
+            "title": "Some Title",
+            "url": "https://www.kmlvm.com.ua/v-den-veterynara-v-stolytsi-projde-bezkoshtovnyj-trening-z-nadannya-pershoyi-dopomogy-tvarynam/",
+            "description": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+            "date": "2022-08-12"
+          },
+          {
+            "_id": "111111a3f5d2e4b7ee02e997",
+            "title": "Some Title 2",
+            "url": "https://www.kmlvm.com.ua/v-den-veterynara-v-stolytsi-projde-bezkoshtovnyj-trening-z-nadannya-pershoyi-dopomogy-tvarynam/",
+            "description": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+            "date": "2022-08-12"
+          }
+        ]
+      },
+
+      "NewNoticeRequest": {
+        "type": "object",
+        "required": [
+          "category",
+          "title",
+          "sex",
+          "location",
+          "photoURL",
+          "comments"
+        ],
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Notice category must be one of: [sell/for-free/lost-found]"
+          },
+          "title": {
+            "type": "string",
+            "description": "Notice title"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Pet's birthday"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex must be male or female"
+          },
+          "location": {
+            "type": "string",
+            "description": "Pet's location"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Pet's price"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "Pet's photo",
+            "format": "binary"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Some text about Pet"
+          }
+        },
+        "example": {
+          "category": "sell",
+          "title": "Sell a cat",
+          "name": "Tom",
+          "birthDate": "2023-03-21T13:15:30.063Z",
+          "breed": "British Shorthair",
+          "sex": "male",
+          "location": "Brovary, Kyiv",
+          "price": 500,
+          "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+          "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet"
+        }
+      },
+
+      "NoticesListschema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Pet's id",
+              "example": "63f72058bbba3338d0016353"
+            },
+            "category": {
+              "type": "string",
+              "description": "Pet's category can be sell, lost-found, for-free",
+              "example": "sell"
+            },
+            "title": {
+              "type": "string",
+              "description": "Notices title",
+              "example": "Sell a cat"
+            },
+            "name": {
+              "type": "string",
+              "description": "Pet's name",
+              "example": "Tom"
+            },
+            "birthDate": {
+              "type": "string",
+              "format": "dateTime",
+              "description": "Pet's birthday",
+              "example": "2023-03-21T13:15:30.063Z"
+            },
+            "breed": {
+              "type": "string",
+              "description": "Pet's breed",
+              "example": "British Shorthair"
+            },
+            "sex": {
+              "type": "string",
+              "description": "Pet's sex must be male or female",
+              "example": "male"
+            },
+            "location": {
+              "type": "string",
+              "description": "Pet's location",
+              "example": "Brovary, Kyiv"
+            },
+            "price": {
+              "type": "integer",
+              "description": "Pet's price",
+              "example": "500"
+            },
+            "photoURL": {
+              "type": "string",
+              "description": "Pet's photo",
+              "example": "http://res.cloudinary.com/dtk7nhyzp/image/upload/h_150,w_100/nils%20cat.png"
+            },
+            "comments": {
+              "type": "string",
+              "description": "Some text about Pet",
+              "example": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet"
+            },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "User's id",
+                  "example": "63f3306945cc47c53a8fd33d"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "User's email",
+                  "format": "email"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "User's name",
+                  "example": "User Test"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "totalItems": "integer",
+          "results": [
+            {
+              "_id": "63f330d345cc47c53a8fd34e",
+              "category": "sell",
+              "title": "Sell a cat",
+              "name": "Tom",
+              "birthDate": "2022-11-30T22:00:00.000Z",
+              "breed": "British Shorthair",
+              "sex": "male",
+              "location": "Brovary, Kyiv",
+              "price": 500,
+              "image": "http://res.cloudinary.com/dtk7nhyzp/image/upload/h_150,w_100/nils%20cat.png",
+              "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+              "owner": {
+                "_id": "63f3306945cc47c53a8fd33d",
+                "email": "testuser@gmail.com",
+                "name": "User Test"
+              }
+            },
+            {
+              "_id": "63f330d345cc47c53a8fd34e",
+              "category": "sell",
+              "title": "Sell a cute citty",
+              "name": "Toma",
+              "birthDate": "2021-10-30T22:00:00.000Z",
+              "breed": "British Shorthair",
+              "sex": "female",
+              "location": "Brovary, Kyiv",
+              "price": 500,
+              "image": "http://res.cloudinary.com/dtk7nhyzp/image/upload/h_150,w_100/nils%20cat.png",
+              "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+              "owner": {
+                "_id": "63f3306945cc47c53a8fd33d",
+                "email": "testuser@gmail.com",
+                "name": "User Test"
+              }
+            }
+          ]
+        }
+      },
+
+      "NoticeSchema": {
+        "type": "object",
+        "required": [
+          "category",
+          "title",
+          "name",
+          "birthDate",
+          "breed",
+          "sex",
+          "comments"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Notice id",
+            "example": "63f72058bbba3338d0016353"
+          },
+          "category": {
+            "type": "string",
+            "description": "Pet's category can be sell, lost-found, for-free",
+            "example": "sell"
+          },
+          "title": {
+            "type": "string",
+            "description": "Notices title",
+            "example": "Sell a cat"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Tom"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Pet's birthday",
+            "example": "2023-03-21T13:15:30.063Z"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "British Shorthair"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex must be male or female",
+            "example": "male"
+          },
+          "location": {
+            "type": "string",
+            "description": "Pet's location",
+            "example": "Brovary, Kyiv"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Pet's price",
+            "example": "500"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "Pet's photo",
+            "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Some text about Pet",
+            "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet"
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's id",
+                "example": "63f3306945cc47c53a8fd33d"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email",
+                "example": "usertest@gmail.com"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "User Test"
+              }
+            }
+          }
+        },
+        "example": {
+          "_id": "63f330d345cc47c53a8fd34e",
+          "category": "sell",
+          "title": "Sell a cat",
+          "name": "Tom",
+          "birthDate": "2022-11-30T22:00:00.000Z",
+          "breed": "British Shorthair",
+          "sex": "male",
+          "location": "Brovary, Kyiv",
+          "price": 500,
+          "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+          "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+          "owner": {
+            "_id": "63f3306945cc47c53a8fd33d",
+            "email": "usertest@gmail.com",
+            "name": "User Test"
+          }
+        }
+      },
+
+      "FavoriteNoticeSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Pet's id"
+          },
+          "category": {
+            "type": "string",
+            "description": "Pet's category can be sell, lost-found, for-free"
+          },
+          "title": {
+            "type": "string",
+            "description": "Notices title"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Pet's birthday"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex must be male or female"
+          },
+          "location": {
+            "type": "string",
+            "description": "Pet's location"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Pet's price"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "Pet's photo"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Some text about Pet"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner's id",
+            "owner": "63f3306945cc47c53a8fd33d"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Date of creation notice"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Date of update notice"
+          }
+        },
+        "example": {
+          "_id": "63f330d345cc47c53a8fd34e",
+          "category": "sell",
+          "title": "Sell a cat",
+          "name": "Tom",
+          "birthDate": "2022-11-30T22:00:00.000Z",
+          "breed": "British Shorthair",
+          "sex": "male",
+          "location": "Brovary, Kyiv",
+          "price": 500,
+          "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+          "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+          "owner": "63f3306945cc47c53a8fd33d",
+          "createdAt": "2023-03-21T13:15:30.063Z",
+          "updatedAt": "2023-03-21T13:15:30.063Z"
+        }
+      },
+
+      "FavoriteNoticeListSchema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Pet's id"
+            },
+            "category": {
+              "type": "string",
+              "description": "Pet's category can be one of [sell/lost-found/for-free]"
+            },
+            "title": {
+              "type": "string",
+              "description": "Notices title"
+            },
+            "name": {
+              "type": "string",
+              "description": "Pet's name"
+            },
+            "birthDate": {
+              "type": "string",
+              "format": "dateTime",
+              "description": "Pet's birthday"
+            },
+            "breed": {
+              "type": "string",
+              "description": "Pet's breed"
+            },
+            "sex": {
+              "type": "string",
+              "description": "Pet's sex must be male or female"
+            },
+            "location": {
+              "type": "string",
+              "description": "Pet's location"
+            },
+            "price": {
+              "type": "integer",
+              "description": "Pet's price"
+            },
+            "photoURL": {
+              "type": "string",
+              "description": "Pet's photo"
+            },
+            "comments": {
+              "type": "string",
+              "description": "Some text about Pet"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Owner's id"
+            }
+          }
+        },
+        "example": {
+          "results": [
+            {
+              "_id": "63f330d345cc47c53a8fd34e",
+              "category": "sell",
+              "title": "Sell a cat",
+              "name": "Tom",
+              "birthDate": "2022-11-30T22:00:00.000Z",
+              "breed": "British Shorthair",
+              "sex": "male",
+              "location": "Brovary, Kyiv",
+              "price": 500,
+              "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+              "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+              "owner": "63f3306945cc47c53a8fd33d"
+            },
+            {
+              "_id": "63f330d345cc47c53a8fd34e",
+              "category": "sell",
+              "title": "Sell a cute citty",
+              "name": "Toma",
+              "birthDate": "2022-11-30T22:00:00.000Z",
+              "breed": "Home",
+              "sex": "female",
+              "location": "Brovary, Kyiv",
+              "price": 500,
+              "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+              "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+              "owner": "63f3306945cc47c53a8fd33d"
+            }
+          ]
+        }
+      },
+
+      "PetRequestSchema": {
+        "type": "object",
+        "required": ["name", "breed", "photoURL", "birthDate", "comments"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "Pet's photo",
+            "format": "binary"
+          },
+
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Pet's birthday"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Some text about Pet"
+          }
+        },
+        "example": {
+          "_id": "63f330d345cc47c53a8fd34e",
+          "name": "Tom",
+          "breed": "British Shorthair",
+          "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+          "birthDate": "2023-03-21T13:15:30.063Z",
+          "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+          "owner": {
+            "_id": "63f3306945cc47c53a8fd33d",
+            "email": "usertest@gmail.com",
+            "name": "User Test"
+          }
+        }
+      },
+
+      "PetResponseSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "Pet's photo",
+            "format": "binary"
+          },
+
+          "birthDate": {
+            "type": "string",
+            "format": "dateTime",
+            "description": "Pet's birthday"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Some text about Pet"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner's id"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Pet's id"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Date of creation notice",
+            "format": "dateTime"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Date of update notice",
+            "format": "dateTime"
+          }
+        },
+        "example": {
+          "name": "Tom",
+          "breed": "British Shorthair",
+          "photoURL": "https://res.cloudinary.com/dpjmbj5vx/image/upload/v1679256350/noticeImages/licensed-image.jpg",
+          "birthDate": "2023-03-21T13:15:30.063Z",
+          "comments": "Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet",
+          "owner": "63f3306945cc47c53a8fd33d",
+          "_id": "63f330d345cc47c53a8fd34e",
+          "createdAt": "2023-03-21T13:15:30.063Z",
+          "updatedAt": "2023-03-21T13:15:30.063Z"
+        }
+      }
+    },
+
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
